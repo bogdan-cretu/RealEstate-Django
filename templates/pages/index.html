@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %} | Bine ai venit {%endblock%}
+{% block content %}
+
+ <!-- Showcase -->
+ <section id="showcase">
+    <div class="container text-center">
+      <div class="home-search p-5">
+        <div class="overlay p-5">
+          <h1 class="display-4 mb-4">
+            Ce cauti astazi?
+          </h1>
+          <p class="lead">Ai la dispozitie sute de apartamente din care sa 
+            iti alegi!
+          </p>
+          <div class="search">
+            <form action="{% url 'search'%}">
+              <!-- Form Row 1 -->
+              <div class="form-row">
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">Keywords</label>
+                  <input type="text" name="keywords" class="form-control" placeholder="Cuvant cheie">
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">City</label>
+                  <input type="text" name="city" class="form-control" placeholder="Oras">
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">State</label>
+                  <select name="state" class="form-control">
+                    <option selected="true" disabled="disabled">Judet</option>
+                    {% for key,value in state_choices.items %}
+                      <option value="{{key}}">{{ value }}</option>
+                    {%endfor%}
+                  </select>
+                </div>
+              </div>
+              <!-- Form Row 2 -->
+              <div class="form-row">
+                <div class="col-md-6 mb-3">
+                  <label class="sr-only">Bedrooms</label>
+                  <select name="bedrooms" class="form-control">
+                    <option selected="true" disabled="disabled">Dormitoare</option>
+                    {% for key,value in bedroom_choices.items %}
+                      <option value="{{key}}">{{ value }}</option>
+                    {%endfor%}
+                    
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <select name="price" class="form-control" id="type">
+                    <option selected="true" disabled="disabled">Pret maxim</option>
+                    {% for key,value in price_choices.items %}
+                      <option value="{{ key }}"> {{ value }} </option>
+                    {%endfor%}
+                  </select>
+                </div>
+              </div>
+              <button class="btn btn-secondary btn-block mt-4" type="submit">Trimite</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<br>
+  <!-- Alerts -->
+  {% include 'partials/_alerts.html' %}
+
+
+  <!-- Listings -->
+  <section id="listings" class="py-5">
+    <div class="container">
+      <h3 class="text-center mb-3">Cele mai recente</h3>
+      <div class="row">
+        {% if listings %}
+          {% for listing in listings%}
+          <div class="col-md-6 col-lg-4 mb-4" >
+            <div class="card listing-preview">
+              <img class="card-img-top" src="{{listing.photo_main.url}}" alt="" height="200 em">
+              <div class="card-img-overlay">
+                <h2>
+                  <span class="badge badge-secondary text-white">{{listing.price | intcomma}} EUR</span>
+                </h2>
+              </div>
+              <div class="card-body">
+                <div class="listing-heading text-center">
+                  <h5 class="text-primary">{{listing.title}}</h5>
+                  <p>
+                    <i class="fas fa-map-marker text-secondary"></i> {{listing.city}} {{listing.state}}, {{listing.zipcode}}</p>
+                </div>
+                <hr>
+                <div class="row py-2 text-secondary text-center" >
+                  <div class="col-12">
+                    <i class="fas fa-th-large"></i> Suprafata: {{listing.sqft}} mp <sup>2</sup></div>
+                  
+                  <div class="col-12">
+                    <i class="fas fa-car"></i> Loc de parcare: {{listing.garage}}</div>
+                
+                  <div class="col-12">
+                    <i class="fas fa-bed"></i> Dormitoare: {{listing.bedrooms}}</div>
+                  <div class="col-12">
+                    <i class="fas fa-bath"></i> Bai: {{listing.bathrooms}}</div>
+                </div>
+                <hr>
+                <div class="row py-2 text-secondary text-center">
+                  <div class="col-12">
+                    <i class="fas fa-user"></i> {{listing.realtor}}</div>
+                </div>
+                <div class="row text-secondary pb-2">
+                  <div class="col-12 text-center">
+                    <i class="fas fa-clock"></i> {{listing.list_date | timesince}}</div>
+                </div>
+                <hr>
+                <a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block">Detalii</a>
+              </div>
+            </div>
+          </div>
+          {%endfor%}
+
+        {%else%}
+          <div class="col-md-12">
+            <p>Nu exista anunturi pentru aceste filtre</p>
+          </div>
+
+
+        {% endif %}
+       
+
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="py-5 bg-secondary text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-4">
+          <i class="fas fa-comment fa-4x mr-4"></i>
+          <hr>
+          <h3>Servicii de consultanta</h3>
+          <p>Oferim servicii de consultanta pentru a gasi cea mai buna oferta de pe piata 
+            conform standardelor tale. Visul tau implinit este succesul nostru!
+          </p>
+        </div>
+        <div class="col-md-4">
+          <i class="fas fa-home fa-4x mr-4"></i>
+          <hr>
+          <h3>Managementul proprietatilor</h3>
+          <p>Compania noastra are sub management peste 10.000 de proprietati si suntem in continua
+            crestere. 
+          </p>
+        </div>
+        <div class="col-md-4">
+          <i class="fas fa-suitcase fa-4x mr-4"></i>
+          <hr>
+          <h3>Inchiriere si vanzare</h3>
+          <p>Oferim spre inchiriere sau vanzare locuinte verificate, la cheie sau in dezvoltare, 
+            pentru orice tip de client pana la cele mai inalte standarde.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

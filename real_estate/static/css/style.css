@@ -1,0 +1,143 @@
+.btn-secondary {
+  color: #fff !important; }
+
+img {
+  width: 100%; }
+
+.logo {
+  width: 80px; }
+
+.navbar {
+  opacity: 0.9;
+  
+ }
+
+.social a {
+  margin-right: 0.4rem; }
+
+  #footer-link-a{
+    color: white;
+  }
+
+#showcase {
+  background: url(../img/apartamente.jpg) no-repeat top center fixed ;
+  position: relative;
+  min-height: 650px;
+  color: #fff;
+  padding-top: 6rem; }
+  #showcase .home-search {
+    min-height: 400px;
+    position: relative;
+    border-radius: 5px; }
+  #showcase .overlay {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 400px;
+    width: 100%;
+    background: rgba(51, 51, 51, 0.8); }
+
+#services {
+  background: url(../img/apartamente2.jpg) no-repeat bottom center fixed;
+  min-height: 300px;
+  position: relative;
+  overflow: hidden; }
+  #services::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 100%;
+    width: 100%;
+    background: #990000 ;
+    opacity: 0.8;}
+
+#showcase-inner {
+  background: url(../img/despre_noi.jpg) no-repeat top center fixed;
+  position: relative;
+  overflow: hidden;
+  min-height: 200px; }
+  #showcase-inner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 100%;
+    width: 100%;
+    background: #990000 ;
+    opacity: 0.8; }
+  #showcase-inner.showcase-search {
+    min-height: 270px; }
+
+#work {
+  padding: 6rem 0; }
+
+.listing-preview a {
+  position: relative; }
+
+@media (max-width: 991px) {
+  #showcase {
+    padding-top: 4rem; }
+    #showcase h1 {
+      font-size: 40px; }
+  .hide-md-down {
+    display: none; } }
+
+@media (max-width: 768px) {
+  #showcase {
+    padding-top: 3rem; }
+    #showcase h1 {
+      font-size: 40px; }
+    #showcase p {
+      display: none; }
+  #top-bar {
+    
+    text-align: center; }
+    #top-bar .social {
+      text-align: center !important; } }
+
+@media (max-width: 576px) {
+  #showcase h1 {
+    font-size: 30px; }
+  #showcase-inner h1 {
+    font-size: 40px; } }
+
+#container_about{
+  text-align: center;
+}
+#about_title{
+  color: #FFA500;
+}
+#mvp_card{
+  margin: auto;
+}
+#orange_color{
+  color: #FFA500;
+}
+#red_color{
+  color: #990000;
+}
+#red_color:hover{
+  color: #FFA500;
+}
+
+
+#orange_bk{
+  background-color: #FFA500;
+}
+.circle {
+  height: 45em;
+  width: 45em;
+  border-radius: 50%;
+  background-color: #FFA500;
+  align-self: center;
+  margin-left: 5em;
+  margin-right: 5em;
+  
+}
+
+#mvp_card{
+  align-self: center;
+  margin-top: 2em;
+}

@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} | Despre noi {%endblock%}
+
+{% block content %}
+
+ <section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-4" >Despre noi</h1>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <section id="bc" class="mt-3">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'index' %}">
+              <i class="fas fa-home"></i> Acasa</a>
+          </li>
+          <li class="breadcrumb-item active"> Despre Noi</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+  <section id="about" class="py-4">
+    <div class="container" id="container_about">
+      <div class="row">
+        <div class="col-md-12 ">
+          <h2 id="about_title">Noi iti gasim casa visurilor tale</h2>
+          <p class="lead">Pentru a avea as-ul din maneca, apeleaza cu incredere la AS imobiliare!</p>
+          <img src="{% static 'img/despre_noi_2.jpg'%}" alt="" >
+          <p class="mt-4">Am selectat pentru tine proprietăți deosebite, la prețuri speciale. 
+            Alege proprietatea care te interesează și contactează un agent AS! 
+            Astfel vei fi sigur că faci o investiție avantajoasă!</p>
+        </div>
+
+  <!-- Team -->
+  <section id="team" class="py-5" >
+    <div class="container"  >
+      <h2 class="text-center" id="about_title">Echipa Noastra</h2>
+      <br>
+      <div class="row text-center" >
+        {% if realtors %}
+          {% for realtor in realtors %}
+          <div class="col-md-6">
+            <img src="{{ realtor.photo.url }}" alt="" class="portrait">
+            <hr>
+            <h4 id="about_title">{{realtor.name}}</h4>
+            <p class="text-success">
+              <i class="fas fa-award text-success mb-3"></i> Consultant</p>
+            <hr>
+            <p>
+              {{realtor.description}}
+            </p>
+            <p>
+              <i class="fas fa-phone"></i> {{realtor.phone}} </p>
+            <p>
+              <i class="fas fa-envelope-open"></i> <a href="mailto:{{realtor.email}}">{{realtor.email}}</a> </p>
+          </div>
+
+
+          {% endfor %}
+        {% else %}
+          <div class="col-md-12">
+            <p>Nu sunt consultanti disponibili!</p>
+          </div>
+        {% endif %}
+        
+      </div>
+    </div>
+  </section>
+
+      <div class="circle">
+        <div class="col-md-5" id="mvp_card" >
+          {% if mvp_realtors %}
+            {% for realtor in mvp_realtors %}
+            <div class="card">
+              <img class="card-img-top" src="{{realtor.photo.url}}" alt="Seller of the month">
+              <div class="card-body">
+                <h5 class="card-title" id="orange_color">Consultantul lunii</h5>
+                <h6 class="text-secondary">{{realtor.name}}</h6>
+                <p class="card-text">{{realtor.description}}
+                </p>
+                <a href="mailto:{{realtor.email}}">{{realtor.email}}</a>
+                <p>{{realtor.phone}}</p>
+              </div>
+            </div>
+            {%endfor%}
+
+          {% endif %}
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <section id="work" class="bg-dark text-white text-center" >
+    <h2 class="display-4">Suntem aici pentru tine</h2>
+    <h4 style="padding: 10px;">Avand o prezenta vasta pe piata imobiliara, echipa AS iti garanteaza consultanta profesionala
+      si te va ajuta sa gasesti noua ta locuinta de vis! </h4>
+    <hr>
+    <a href="{% url 'listings' %}" class="btn btn-secondary text-white btn-lg">Listari recomandate</a>
+  </section>
+
+  
+  
+
+{% endblock %}
+
